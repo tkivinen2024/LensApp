@@ -13,6 +13,7 @@ When run in Visual Studio Code:
 
 LensApp starts at port 4200 (USAGE: http://localhost:4200/) . 
 
+Test user can be imported to Mongodb/LensApp collection: https://github.com/tkivinen2024/LensApp/blob/main/test_user.json
 
 
 
