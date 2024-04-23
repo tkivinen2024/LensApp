@@ -1,0 +1,29 @@
+<h2 class="page-header my-4">Login</h2>
+<form (submit)="onLoginSubmit()">
+  <div class="form-group">
+    <label for="login-username-input">Username</label>
+    <input
+      type="text"
+      name="username"
+      id="login-username-input"
+      class="form-control"
+      [(ngModel)]="user.username"
+    />
+  </div>
+  <div class="form-group">
+    <label for="login-password-input">Password</label>
+    <input
+      type="password"
+      name="password"
+      id="login-password-input"
+      class="form-control"
+      [(ngModel)]="user.password"
+    />
+  </div>
+  <input
+    type="submit"
+    value="Login"
+    class="btn btn-primary mt-3 p-2"
+    style="min-width: 15vw"
+  />
+</form>

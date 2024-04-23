@@ -1,0 +1,26 @@
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="/">LensApp</a>Recommended Camera Lenses
+    
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav ms-auto">
+        <li *ngIf="!isUserAuthenticated()" class="nav-item">
+          <a
+            class="nav-link"
+            routerLink="/login"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Login</a
+          >
+        </li>
+        <li *ngIf="isUserAuthenticated()" class="nav-item">
+          <a class="nav-link"  (click)="onLogoutClick()"
+            >Logout</a
+          >
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

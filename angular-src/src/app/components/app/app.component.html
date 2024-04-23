@@ -1,0 +1,174 @@
+<!--  ***************************************
+        23.4.2024 Timo Kivinen
+      *************************************** 
+-->    
+<app-navbar></app-navbar>
+<div class="container">
+  <flash-messages></flash-messages>
+  <router-outlet></router-outlet>
+</div>
+
+<ul class="list-group">
+  <br/><br/>
+  <h5 >&nbsp;&nbsp;Wide Lenses</h5>
+  <!--  *************************************** -->    
+  <ng-container *ngFor="let item of items">
+    <li
+    *ngIf="item.category === 'Wide'"
+    class="list-group-item d-flex justify-content-between align-items-center" >
+ 
+     <button
+      *ngIf="isUserAuthenticated()"
+      class=".btn"
+       (click)="deleteItem(item)">del
+      </button>
+
+      <div>{{ item.name }}&nbsp;{{ item.focallength }}&nbsp;&nbsp;{{ item.category }}</div>
+ 
+      <span
+        >{{ item.price?.toFixed(2) }}€</span
+      >
+
+    </li>
+  </ng-container>
+  <br/><br/>
+  <h5>&nbsp;&nbsp;Normal Lenses</h5>
+  <!--  *************************************** -->   
+  <ng-container *ngFor="let item of items">
+    <li
+      *ngIf="item.category === 'Normal'"
+      class="list-group-item d-flex justify-content-between align-items-center" >
+    <button
+      *ngIf="isUserAuthenticated()"
+      class=".btn"
+      (click)="deleteItem(item)">del
+    </button>
+      <div>
+        <div class="fw-bold">{{ item.name }}&nbsp;{{ item.focallength }}&nbsp;&nbsp;{{ item.category }}</div>
+      </div>
+      <div>{{ item.price?.toFixed(2) }}€</div>
+    </li>
+  </ng-container>
+  <br/><br/>
+  <h5>&nbsp;&nbsp;Tele Lenses</h5>
+  <!--  *************************************** -->   
+  <ng-container *ngFor="let item of items">
+    <li
+      *ngIf="item.category === 'Tele'"
+      class="list-group-item d-flex justify-content-between align-items-center" >
+      <button
+        *ngIf="isUserAuthenticated()"
+        class=".btn"
+        (click)="deleteItem(item)">del
+      </button>
+        
+      <div>
+        <div class="fw-bold">{{ item.name }}&nbsp;{{ item.focallength }}&nbsp;&nbsp;{{ item.category }}</div>
+      </div>
+      <div>{{ item.price?.toFixed(2) }}€</div>
+  
+    </li>
+  </ng-container>
+</ul>
+
+<!--  ******************************************************** -->
+<div *ngIf="isUserAuthenticated()">
+  <br/><br/>
+  <h5>&nbsp;&nbsp;Add a new Lens</h5>
+  
+  <form (keyup)="handleKeyUp($event)">
+
+    <!--  *** BRAND ************************************* -->
+    <div>
+      &nbsp;&nbsp;
+      <label>Brand: &nbsp;&nbsp;</label>
+      <input
+        type="text"
+        name="name"
+        id="lens-newitem-name-input"
+       
+        [(ngModel)]="newItem.name"
+      />
+    
+      <!--  *** PRICE ************************************* -->
+   
+      <label for="lens-newitem-price-input">  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Price (&#8364;): &nbsp;&nbsp;</label>
+      <input
+        type="number"
+        name="price"
+        min="0"
+        id="lens-newitem-price-input"
+        
+        [(ngModel)]="newItem.price"
+      />
+
+      <!--  *** Focal length ************************************* -->
+
+      <label for="lens-newitem-focallength-input"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Focal length:&nbsp;&nbsp;</label>
+      <input
+        type="text"
+        name="focallength"
+        id="lens-newitem-focallength-input"
+        
+        [(ngModel)]="newItem.focallength"
+      />
+
+      <!--  ******************************************************** -->
+      <br/><br/>
+      <fieldset class="" >
+        <label for="lens-newitem-focallength-input"> &nbsp;&nbsp;&nbsp;Type:&nbsp;&nbsp;</label>
+        <!--- div class="form-check"--->
+          &nbsp;
+          <input
+            class="form-check-input"
+            type="radio"
+            name="category"
+            id="category-wide"
+            value="Wide"
+            [(ngModel)]="newItem.category"
+            checked
+          />
+          <label class="form-check-label" for="category-wide">&nbsp;&nbsp;Wide</label>
+        <!--- /div -->
+    
+        <!--  ******************************************************** -->
+        &nbsp;&nbsp;
+        <!---div class="form-check"--->
+          <input
+            class="form-check-input"
+            type="radio"
+            name="category"
+            id="category-normal"
+            value="Normal"
+            [(ngModel)]="newItem.category"
+          />
+          <label class="form-check-label" for="category-normal">&nbsp;&nbsp;Normal</label>
+        <!---/div --->
+        <!--  ******************************************************** -->
+        &nbsp;&nbsp;
+        <!---div class="form-check"--->
+          <input
+            class="form-check-input"
+            type="radio"
+            name="category"
+            id="category-tele"
+            value="Tele"
+            [(ngModel)]="newItem.category"
+          />
+          <label class="form-check-label" for="category-tele">&nbsp;&nbsp;Tele </label>
+        <!---/div --->
+      </fieldset>
+    </div>
+    <!--  ******************************************************** -->
+    <br/>
+    &nbsp;&nbsp;
+    <input
+      type="button"
+      value="Add a new lens"
+      class=".btn"
+      style="min-width: 15vw"
+      (click)="addItem()"
+    />
+  </form>
+  <br/>
+</div>
